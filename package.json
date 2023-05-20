@@ -1,17 +1,17 @@
 {
   "name": "mi-proyect-product-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "a simple rest api",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "build": "babel src --out-dir build",
-    "dev": "nodemon src/index.js",
+    "dev": "nodemon  src/index.js " ,
     "start": "node build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "antony",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
