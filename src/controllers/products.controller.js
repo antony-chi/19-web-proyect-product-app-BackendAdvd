@@ -23,7 +23,13 @@ export const getProducts = async (req, res) => {
 }
 
 export const getProductsById = async (req, res) => {
-
+    const productporID = await Product.findById(req.params.productId);
+    //console.log(productporID)
+    if ( productporID === null) {
+        return res.status(404).json('no se encontro ID')
+    } else {
+        return res.status(200).json(productporID)
+    }
 }
 
 export const updateProductById = async(req, res) => {
