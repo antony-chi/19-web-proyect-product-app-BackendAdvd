@@ -16,17 +16,19 @@ export const createProduct = async (req, res) => {
     console.log('product create')
 }
 
-export const getProducts = (req, res) => {
-    res.json({code:200, message: 'get products'})
+export const getProducts = async (req, res) => {
+    const productsLista = await Product.find();
+    console.log("view produc")
+    res.json(productsLista)
 }
 
-export const getProductsById = (req, res) => {
-    
+export const getProductsById = async (req, res) => {
+
 }
 
-export const updateProductById = (req, res) => {
+export const updateProductById = async(req, res) => {
     
 }
-export const deletetProductById = (req, res) => {
+export const deletetProductById = async (req, res) => {
     
 }
