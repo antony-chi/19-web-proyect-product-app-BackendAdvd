@@ -12,14 +12,14 @@ export const createProduct = async (req, res) => {
         imgURL
     });
     const productSaved = await newProduct.save()
-    res.status(201).json(productSaved)
     console.log('product create')
+    return res.status(201).json(productSaved)
 }
 
 export const getProducts = async (req, res) => {
     const productsLista = await Product.find();
     console.log("view produc")
-    res.json(productsLista)
+    return res.json(productsLista)
 }
 
 export const getProductsById = async (req, res) => {
@@ -33,7 +33,11 @@ export const getProductsById = async (req, res) => {
 }
 
 export const updateProductById = async(req, res) => {
-    
+    const updateProduct = await Product.findByIdAndUpdate(req.params.productId,req.body,{
+        new: true
+    })
+    console.log("product UPDATE complete")
+    return res.status(200).json(updateProduct)
 }
 export const deletetProductById = async (req, res) => {
     
