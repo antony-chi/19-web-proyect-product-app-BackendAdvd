@@ -5,6 +5,7 @@ import morgan from 'morgan'
 import pkg from '../package.json' assert{type:'json' } 
 //importamos Routes
 import productsRoutes from './routes/products.routes.js'
+import authRoutes from './routes/auth.routes.js'
 
 
 //Importamos Middlewares
@@ -25,6 +26,7 @@ app.get('/', (req, res) =>{
     })
 })
 
-app.use('/products',productsRoutes)
+app.use('/api/products',productsRoutes)
+app.use('/api/auth',authRoutes)
 
 export default app;
