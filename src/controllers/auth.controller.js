@@ -1,6 +1,7 @@
 import User from '../models/User.js'
 import jwt  from 'jsonwebtoken'
 import config from '../config.js'
+import Role from '../models/Role.js'
 
 export const signUp = async (req, res) =>{
     const {username, email, password, roles } = req.body
@@ -11,8 +12,16 @@ export const signUp = async (req, res) =>{
         email,
         password: await User.encriptarPassword(password)
     })
-   
-    //console.log(newUser)
+    //validar si contiene roles o asignar role USER default
+    if(roles){
+        const foundRoles = await Role.find({name: {$in: roles}})
+        newUser.roles = foundRoles.map(role => role._id)
+    }else{
+        const role = await Role.findOne({name: 'user'})
+        newUser.roles = [role._id]
+    }
+
+    console.log(newUser)
     const saveUser = await newUser.save();
     //creando token de autenticacion
     const token = jwt.sign({id: saveUser._id},config.SECRET,{
