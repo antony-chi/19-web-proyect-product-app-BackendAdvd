@@ -11,6 +11,7 @@ export const signUp = async (req, res) =>{
         email,
         password: await User.encriptarPassword(password)
     })
+   
     //console.log(newUser)
     const saveUser = await newUser.save();
     //creando token de autenticacion
