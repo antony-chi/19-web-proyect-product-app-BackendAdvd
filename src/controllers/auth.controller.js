@@ -31,6 +31,11 @@ export const signUp = async (req, res) =>{
     res.status(200).json({token})
 }
 
-export const signIn = async (req, res) =>{
-    res.json('signIn')
+export const signIn = async (req, res) => {
+    const userFound = await User.findOne({email: req.body.email}).populate("roles");
+
+    //validamos si existe el email
+    if(!userFound) return res.json({message: "User not found"})
+    console.log(userFound)
+    res.json({token: ""})
 }
