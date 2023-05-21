@@ -8,6 +8,8 @@ export async function connect(){
         await mongoose.connect("mongodb://127.0.0.1/Prodcut-App",{
             useNewUrlParser: true,
             //useUnifiedTopology:true
+            //useFindAndModify: true
+            //useCreateIndex: true
         });
         console.log("database connected")
         
