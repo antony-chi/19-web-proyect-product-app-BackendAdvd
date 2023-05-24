@@ -8,6 +8,7 @@ import { createRoles } from './libs/initalSetup.js' //importamos roles para inic
 //importamos Routes
 import productsRoutes from './routes/products.routes.js'
 import authRoutes from './routes/auth.routes.js'
+import userRoutes from './routes/user.routes.js'
 
 
 //Importamos Middlewares
@@ -16,8 +17,7 @@ import authRoutes from './routes/auth.routes.js'
 //Global Settings
 app.set('pkg', pkg);
 app.use(morgan('dev'));
-//---indicamos que va usar json 
-app.use(express.json());
+app.use(express.json());//---indicamos que va usar json 
 createRoles();//funcion crear role por defecto si el sistema no tieroles creara USER MODERADOR ADMIN
 
 app.get('/', (req, res) =>{
@@ -28,8 +28,9 @@ app.get('/', (req, res) =>{
         version: app.get('pkg').version
     })
 })
-
+//usamos llamamos los routes
 app.use('/api/products',productsRoutes)
 app.use('/api/auth',authRoutes)
+app.use('/api/users',userRoutes)
 
 export default app;
