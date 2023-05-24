@@ -17,7 +17,7 @@ export const verifyToken = async (req, res, next) => {
     req.userId = decoded.id
     //buscarmos el user por id en el model USER
     const user = await User.findById(req.userId, {password:0})
-    console.log(user)
+    //console.log(user)
     if(!user) return res.status(404).json({message: "no user found"})
 
     next();
