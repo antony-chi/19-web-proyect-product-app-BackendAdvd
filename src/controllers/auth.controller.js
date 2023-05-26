@@ -25,10 +25,10 @@ export const signUp = async (req, res) =>{
     const saveUser = await newUser.save();
     //creando token de autenticacion
     const token = jwt.sign({id: saveUser._id},config.SECRET,{
-        expiresIn: 86400 //tiempo de expiracion en segundos 24 horas = 86400 segundos
+        expiresIn: 180 //tiempo de expiracion en segundos 3 horas = 180 segundos
     })
     console.log(token)
-    res.status(200).json({token})
+    res.status(201).json({token})
 }
 
 export const signIn = async (req, res) => {
