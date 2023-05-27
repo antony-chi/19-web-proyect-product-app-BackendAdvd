@@ -43,12 +43,15 @@ export const createUser = async (req, res) => {
 
 export const getUsers = async (req, res) => {
     const user = await User.find()
-    console.log(user)
+    //console.log(user)
     res.status(200).json(user)
 }
 
 export const getUserById = async (req, res) =>{
-    res.json("usuario por id")
+    const userId = req.params.userId
+    console.log(userId)
+    const user = await User.findById(userId)
+    res.json(user)
 }
 
 export const updateUserById = async (req,res) =>{

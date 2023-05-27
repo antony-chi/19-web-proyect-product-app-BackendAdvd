@@ -10,8 +10,10 @@ router.post('/createUser',[
     verifySignup.checkRolesExisted,
     verifySignup.checkDuplicatedUsernameOrEmail
 ] , useContrl.createUser);
-router.get('/',authJwt.verifyToken,useContrl.getUsers);
-router.put('/updateUser/:userId',[authJwt.verifyToken,authJwt.isAdmin,verifySignup.checkRolesExisted,verifySignup.checkDuplicatedUsernameOrEmail], useContrl.updateUserById)
 
+router.get('/',authJwt.verifyToken,useContrl.getUsers);
+router.get('/:userId',useContrl.getUserById);
+
+router.put('/updateUser/:userId',[authJwt.verifyToken,authJwt.isAdmin,verifySignup.checkRolesExisted,verifySignup.checkDuplicatedUsernameOrEmail], useContrl.updateUserById);
 
 export default router;
