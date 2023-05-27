@@ -12,8 +12,12 @@ router.post('/createUser',[
 ] , useContrl.createUser);
 
 router.get('/',authJwt.verifyToken,useContrl.getUsers);
-router.get('/:userId',useContrl.getUserById);
+router.get('/:userId',[authJwt.verifyToken,authJwt.isAdmin],useContrl.getUserById);
 
-router.put('/updateUser/:userId',[authJwt.verifyToken,authJwt.isAdmin,verifySignup.checkRolesExisted,verifySignup.checkDuplicatedUsernameOrEmail], useContrl.updateUserById);
+router.put('/updateUser/:userId',[
+    authJwt.verifyToken,
+    authJwt.isAdmin,
+    verifySignup.checkRolesExisted,],
+    useContrl.updateUserById);
 
 export default router;

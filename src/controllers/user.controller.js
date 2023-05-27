@@ -58,6 +58,18 @@ export const updateUserById = async (req,res) =>{
    try {
         const userId = req.params.userId//obtenermos el _id de req.paramos 
         const {username, email, password, roles} = req.body//dextraer variables desestruring
+        const userDB =await User.findOne({username: username})
+        //console.log(userDB)
+        //validamos que el username este disponible para proceder acctualizar
+        if( userDB != null){
+            console.log("username not available")
+            return res.status(400).json(`user ${username} not available, intente otro`)
+        }
+        //validamos que el correo este disponible para proceder actualizar
+        const emailDB = await User.findOne({email: email})
+        console.log(emailDB)
+        if(emailDB != null) return res.json(`email ${email} not available, try again email`)
+        
         //lo preparamos en el model User
         const updateUsercampos = new User({
             username: username,
@@ -74,14 +86,15 @@ export const updateUserById = async (req,res) =>{
         }
 
         //console.log(updateUsercampos)
-        const userActulizado = await User.findByIdAndUpdate(userId, {
+        /*const userActulizado = await User.findByIdAndUpdate(userId, {
             username: updateUsercampos.username,
             email: updateUsercampos.email,
             password: updateUsercampos.password,
             roles: updateUsercampos.roles
-        },{new: true})
+        },{new: true})*/
         
-        console.log(userActulizado)
+        
+        //console.log(userActulizado)
 
         return res.json({message: "user upadate "+userActulizado.username})
    } catch (error) {
