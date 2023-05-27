@@ -101,4 +101,18 @@ export const updateUserById = async (req,res) =>{
     console.log(`ocurrio un error, verifique los datos`+error);
     return res.json("ocurrio un error")
    }
+};
+
+export const deleteUserById = async (req, res) => {
+    try {
+        const idUser = req.params.userId
+        //const deletedUser = await User.findById({_id:idUser})
+        //console.log(deletedUser)
+        await User.findByIdAndDelete(idUser)
+        console.log("deleted")
+        res.json("deleted user "+ idUser)
+    } catch (error) {
+        console.log("ocurrio un error al eliminar "+error)
+        return res.json("error deleting")
+    }
 }

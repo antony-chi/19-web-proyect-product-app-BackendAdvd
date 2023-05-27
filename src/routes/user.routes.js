@@ -20,4 +20,6 @@ router.put('/updateUser/:userId',[
     verifySignup.checkRolesExisted,],
     useContrl.updateUserById);
 
+router.delete('/deleteUser/:userId',useContrl.deleteUserById)
+
 export default router;
